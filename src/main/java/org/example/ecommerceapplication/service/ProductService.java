@@ -3,6 +3,7 @@ package org.example.ecommerceapplication.service;
 import lombok.extern.slf4j.Slf4j;
 import org.example.ecommerceapplication.dto.CreateProductRequest;
 import org.example.ecommerceapplication.dto.UpdateProductRequest;
+import org.example.ecommerceapplication.exception.ResourceNotFoundException;
 import org.example.ecommerceapplication.model.Category;
 import org.example.ecommerceapplication.model.Product;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,7 @@ public class ProductService {
         Category category = categoryService.getCategoryById(request.getCategoryId());
 
         if(category == null){
-            throw new RuntimeException("Category not found");
+            throw new ResourceNotFoundException("Category not found");
         }
 
         Product product = Product.builder()
@@ -89,12 +90,11 @@ public class ProductService {
         return new PageImpl<>(pageContent, pageable, filteredProducts.size());
     }
 
-    // :TODO Create a ResourceNotFoundExceptionHandler
     public Product getProductById(Long id) {
         log.info("Fetching product with id: {}", id);
         Product product = productStore.get(id);
         if (product == null) {
-            throw new RuntimeException("Product not found");
+            throw new ResourceNotFoundException("Product not found");
         }
         return product;
     }
@@ -104,12 +104,12 @@ public class ProductService {
         log.info("Updating product with name: {}, description: {}, price: {}, quantity: {}", request.getName(), request.getDescription(), request.getPrice(), request.getQuantity());
         Product product = productStore.get(id);
         if (product == null) {
-            throw new RuntimeException("Product with id " + id + " not found");
+            throw new ResourceNotFoundException("Product with id " + id + " not found");
         }
         if(request.getCategoryId() != null) {
             Category category = categoryService.getCategoryById(request.getCategoryId());
             if(category == null){
-                throw new RuntimeException("Category with id " + id + " not found");
+                throw new ResourceNotFoundException("Category with id " + id + " not found");
             }
             product.setCategory(category);
         }
@@ -133,11 +133,10 @@ public class ProductService {
         return product;
     }
 
-    // :TODO Create a ResourceNotFoundExceptionHandler
     public void deleteProduct(Long id) {
         log.info("Deleting product with id: {}", id);
         if(!productStore.containsKey(id)){
-            throw new RuntimeException("Product with id " + id + " not found");
+            throw new ResourceNotFoundException("Product with id " + id + " not found");
         }
         productStore.remove(id);
         log.info("Deleted product with id: {}", id);
