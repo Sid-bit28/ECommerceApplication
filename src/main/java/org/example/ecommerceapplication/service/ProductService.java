@@ -109,7 +109,7 @@ public class ProductService {
         if(request.getCategoryId() != null) {
             Category category = categoryService.getCategoryById(request.getCategoryId());
             if(category == null){
-                throw new ResourceNotFoundException("Category with id " + id + " not found");
+                throw new ResourceNotFoundException("Category with id " + request.getCategoryId() + " not found");
             }
             product.setCategory(category);
         }
