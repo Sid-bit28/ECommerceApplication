@@ -8,16 +8,13 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class ProductDTO {
+public class CategoryDTO {
     private Long id;
     private String name;
     private String description;
-    private Integer quantity;
-    private Double price;
-    private CategoryDTO category;
     private Boolean active;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
