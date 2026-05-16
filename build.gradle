@@ -28,6 +28,7 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testAnnotationProcessor 'org.projectlombok:lombok'
     implementation 'org.hibernate:hibernate-validator:9.0.0.Beta3'
+    implementation 'org.springframework.data:spring-data-commons:4.1.0-RC1'
 }
 
 tasks.named('test') {
