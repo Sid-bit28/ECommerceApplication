@@ -99,6 +99,8 @@ public class ProductController {
                 .name(category.getName())
                 .description(category.getDescription())
                 .active(category.getActive())
+                .createdAt(category.getCreatedAt())
+                .updatedAt(category.getUpdatedAt())
                 .build();
     }
 }

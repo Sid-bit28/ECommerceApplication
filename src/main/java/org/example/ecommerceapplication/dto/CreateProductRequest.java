@@ -30,5 +30,5 @@ public class CreateProductRequest {
 
     @NotNull(message = "Category ID is a must")
     @Positive(message = "Category ID must be valid")
-    private Long CategoryId;
+    private Long categoryId;
 }
