@@ -99,7 +99,6 @@ public class ProductService {
         return product;
     }
 
-    // :TODO Create a ResourceNotFoundExceptionHandler
     public Product updateProduct(Long id, UpdateProductRequest request) {
         log.info("Updating product with name: {}, description: {}, price: {}, quantity: {}", request.getName(), request.getDescription(), request.getPrice(), request.getQuantity());
         Product product = productStore.get(id);
